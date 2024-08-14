@@ -4,9 +4,9 @@ import Todos from "./components/todo/Todos"
 
 const App = () => {
   return (
-    <main>
+    <main >
       <h1 className="  my-10 text-3xl text-green-600 text-center"> 
-        To-Do-App with Type - Script
+        ToDo-App, React with TypeScript
         </h1>
         <Navbar/>
         <Form/>
