@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { v4 as uuidv4 } from 'uuid'; // Import uuid
+import { v4 as uuidv4 } from "uuid"; // Import uuid
 
 export type TodosProvideProps = {
   children: ReactNode;
@@ -33,7 +33,7 @@ export const TodosProvider = ({ children }: TodosProvideProps) => {
   });
 
   const handleAddToDo = (task: string) => {
-    setTodos(prev => {
+    setTodos((prev) => {
       const newTodo: Todo = {
         id: uuidv4(), // Use uuid for unique ID
         task,
@@ -51,8 +51,8 @@ export const TodosProvider = ({ children }: TodosProvideProps) => {
   };
 
   const toggleTodoAsCompleted = (id: string) => {
-    setTodos(prev => {
-      const newTodos = prev.map(todo =>
+    setTodos((prev) => {
+      const newTodos = prev.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       );
       try {
@@ -65,8 +65,8 @@ export const TodosProvider = ({ children }: TodosProvideProps) => {
   };
 
   const handleDeleteTodo = (id: string) => {
-    setTodos(prev => {
-      const newTodos = prev.filter(todo => todo.id !== id);
+    setTodos((prev) => {
+      const newTodos = prev.filter((todo) => todo.id !== id);
       try {
         localStorage.setItem("todos", JSON.stringify(newTodos));
       } catch (error) {
@@ -77,7 +77,9 @@ export const TodosProvider = ({ children }: TodosProvideProps) => {
   };
 
   return (
-    <todosData.Provider value={{ todos, handleAddToDo, toggleTodoAsCompleted, handleDeleteTodo }}>
+    <todosData.Provider
+      value={{ todos, handleAddToDo, toggleTodoAsCompleted, handleDeleteTodo }}
+    >
       {children}
     </todosData.Provider>
   );
